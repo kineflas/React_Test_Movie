@@ -9,7 +9,6 @@
 import React, { Component } from 'react';
 import { Platform, Text, View } from 'react-native';
 import styles from './styles';
-import NavBar from '../NavBar';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n Cmd+D or shake for dev menu',
@@ -21,13 +20,11 @@ const instructions = Platform.select({
 export default class App extends Component {
   render() {
     return (
-      // <View style={styles.container}>
-			// 	<NavBar />
-      //   <Text style={styles.welcome}>Welcome to your Mickey Disney React Native!</Text>
-      //   <Text style={styles.instructions}>To get started, edit App.js</Text>
-      //   <Text style={styles.instructions}>{instructions}</Text>
-      // </View>
-			<NavBar />
+      <View style={styles.container}>
+        <Text style={styles.welcome}>Welcome to your Mickey Disney React Native!</Text>
+        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>{instructions}</Text>
+      </View>
     );
   }
 }

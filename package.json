@@ -4,17 +4,21 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "run-ios": "react-native run-ios",
+    "run-android-device": "react-native run-android",
+    "clean": "react-native-clean-project"
   },
   "dependencies": {
     "@shoutem/ui": "^0.23.9",
     "axios": "^0.18.0",
     "react": "16.6.1",
     "react-native": "0.57.7",
+    "react-native-clean-project": "^3.0.0",
     "react-redux": "^5.1.1",
     "redux": "^4.0.1",
     "redux-axios-middleware": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

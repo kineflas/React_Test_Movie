@@ -1,7 +1,7 @@
 /** @format */
 
 import { AppRegistry } from 'react-native';
-import App from './src/containers/App';
+import Movies from './src/pages/Movies';
 import { name as appName } from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => Movies);
