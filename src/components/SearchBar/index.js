@@ -8,17 +8,19 @@ class SearchBar extends Component {
     super(props);
   }
   render() {
-    const { searchValue, handleChangeSerchValue, handleChangeMovies } = this.props;
+    const { searchValue, handleChangeSerchValue, handleChangeMovies, resetMovies, page } = this.props;
     return (
       <Container>
         <Content
           name="searchValue"
           onChangeText={handleChangeSerchValue}
           value={searchValue}
-          onSubmitEditing={() =>
-            reqSearchMovie(searchValue)
-            .then(data => handleChangeMovies(data))
-            .catch(err => err)
+          onSubmitEditing={() => {
+              resetMovies();
+              reqSearchMovie(searchValue, page)
+              .then(data => handleChangeMovies(data))
+              .catch(err => err)
+            }
           }
         />
       </Container>

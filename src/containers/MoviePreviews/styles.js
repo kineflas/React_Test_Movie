@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 
 export const Container = styled(ScrollView)`
     display:flex;
-    flex-direction:column;
     flex:5;
 `;
 
+export const Spacer = styled(View)`
+    minHeight:100;
+`;

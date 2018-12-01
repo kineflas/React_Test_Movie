@@ -9,12 +9,22 @@ const axios = Axios.create({
   },
 });
 
-export const reqSearchMovie = searchQuery =>
+export const reqSearchMovie = (searchQuery, page) =>
   axios({
     method: 'get',
-    url: `search/movie?api_key=${token}&query=${searchQuery}`,
+    url: `search/movie?api_key=${token}&query=${searchQuery}&page=${page}`,
   })
     .then(res => (res.data.results))
+    .catch(err => {
+      throw err;
+    });
+
+export const reqGetApiConfiguration = () =>
+  axios({
+    method: 'get',
+    url: `configuration?api_key=${token}`,
+  })
+    .then(res => res.data)
     .catch(err => {
       throw err;
     });
