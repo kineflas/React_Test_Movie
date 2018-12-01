@@ -1,0 +1,12 @@
+DropDownMenu => {
+	- Liste de genre acces direct;
+}
+
+Profil => {
+	--Choix de proposition
+}
+
+https://facebook.github.io/react-native/docs/getting-started.html
+https://facebook.github.io/react-native/docs/running-on-device
+23 au lieu de 27 
+https://shoutem.github.io/docs/ui-toolkit/components/navigation-bar
