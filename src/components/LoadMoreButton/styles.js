@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { View, Image, Text } from 'react-native';
-import { LIGHT_BACKGROUND_COLOR, DARK_FONT_COLOR, MAIN_COLOR } from '../../constants/colors';
+import { View, Text } from 'react-native';
 import { WIN_WIDTH } from '../../constants/dimensions';
+import { LIGHT_BACKGROUND_COLOR, MAIN_COLOR } from '../../constants/colors';
 
 
 export const Container = styled(View)`
@@ -14,11 +14,9 @@ export const Container = styled(View)`
 
 export const Content = styled(View)`
     display:flex;
-    justifyContent: flex-start;
+    justifyContent: center;
     alignItems: center;
     height:90;
-    flexDirection:row;
-    flexWrap: nowrap;
     width:${WIN_WIDTH - 30};
     margin-left:15px;
     margin-right:15px;
@@ -27,14 +25,6 @@ export const Content = styled(View)`
     border-radius:3px;
 `;
 
-export const MovieImage = styled(Image)`
-    width:70;
-    height:70;
-    border-radius:3px;
-`;
-
-export const MovieTitle = styled(Text)`
-    flex:1;
-    color:${MAIN_COLOR}
-    margin-left:15px;
+export const StyledText = styled(Text)`
+    color:${MAIN_COLOR};
 `;

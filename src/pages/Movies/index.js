@@ -49,7 +49,13 @@ class Movies extends Component {
           resetMovies={this.resetMovies}
           page={page}
         />
-        <MoviePreviews movies={movies} baseUrl={apiConfiguration.images.secure_base_url}/>
+        <MoviePreviews
+          movies={movies}
+          baseUrl={apiConfiguration.images.secure_base_url}
+          handleChangeMovies={this.handleChangeMovies}
+          page={page}
+          searchValue={searchValue}
+        />
       </Container>
     );
   }
