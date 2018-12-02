@@ -6,12 +6,21 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "run-ios": "react-native run-ios",
     "run-android-device": "react-native run-android",
-    "clean": "react-native-clean-project"
+    "clean": "react-native-clean-project",
+    "test": "jest --colors"
   },
   "dependencies": {
     "@shoutem/ui": "^0.23.9",
     "axios": "^0.18.0",
+    "babel-preset-react-native": "2.1.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "jest": "22.1.2",
+    "jest-environment-jsdom": "22.1.2",
+    "jest-environment-jsdom-global": "1.0.3",
+    "jest-styled-components": "^7.0.0-2",
     "react": "16.6.1",
+    "react-dom": "^16.6.3",
     "react-native": "0.57.7",
     "react-native-clean-project": "^3.0.0",
     "react-redux": "^5.1.1",
