@@ -16,8 +16,8 @@ class SearchBar extends Component {
           onChangeText={handleChangeSerchValue}
           value={searchValue}
           onSubmitEditing={() => {
+              resetMovies();
 							if (searchValue) {
-								resetMovies();
 								reqSearchMovie(searchValue, page)
 								.then(data => handleChangeMovies(data))
 								.catch(err => err)

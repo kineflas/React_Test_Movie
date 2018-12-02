@@ -8,9 +8,7 @@ import { reqDiscoverMovie } from '../../requests';
 	
 class DiscoverPreviews extends Component {
 	componentDidMount () {
-		console.log('Debug');
 		if (this.props.movies.length === 0)
-			console.log('Debug');
 			reqDiscoverMovie(1)
 			.then(data => this.props.handleChangeMovies(data))
 			.catch(err => err);
@@ -21,13 +19,15 @@ class DiscoverPreviews extends Component {
       baseUrl,
       handleChangeMovies,
       page,
-      searchValue
+      searchValue,
+      handleLoadMovie
     } = this.props;
     return (
       <Container>
         <FlatList
           data={movies}
-          renderItem={movie => <MoviePreview id={movie.id} movie={movie} baseUrl={baseUrl} />}
+          keyExtractor={(item, index) => index}
+          renderItem={movie => <MoviePreview key={movie.id} id={movie.id} movie={movie} baseUrl={baseUrl} handleLoadMovie={handleLoadMovie}/>}
         />
           {movies.length > 0 &&
             <DiscoverMoreButton

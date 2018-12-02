@@ -12,13 +12,15 @@ class MoviePreviews extends Component {
       baseUrl,
       handleChangeMovies,
       page,
-      searchValue
+      searchValue,
+      handleLoadMovie
     } = this.props;
     return (
       <Container>
         <FlatList
           data={movies}
-          renderItem={movie => <MoviePreview id={movie.id} movie={movie} baseUrl={baseUrl} />}
+          keyExtractor={(item, index) => index}
+          renderItem={movie => <MoviePreview id={movie.id} movie={movie} baseUrl={baseUrl} handleLoadMovie={handleLoadMovie}/>}
         />
           {movies.length > 0 &&
             <LoadMoreButton

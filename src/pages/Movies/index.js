@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Container } from './styles';
 import SearchBar from '../../components/SearchBar';
 import MoviePreviews from '../../containers/MoviePreviews';
+import MovieDetails from '../../containers/MovieDetails';
 import DiscoverPreviews from '../../containers/DiscoverPreviews';
 import { reqGetApiConfiguration } from '../../requests';
 	
@@ -11,6 +12,7 @@ class Movies extends Component {
     super(props);
     this.state = {
       searchValue: '',
+      movie: undefined,
       movies: [],
       page: 1,
       apiConfiguration: {
@@ -30,6 +32,12 @@ class Movies extends Component {
   resetMovies = () => {
     this.setState({ movies: [], page: 1 });
   }
+  handleLoadMovie = newMovie => {
+    this.setState({ movie: newMovie })
+  }
+  handleResetMovie = () => {
+    this.setState({ movie: undefined })
+  }
   componentWillMount() {
     reqGetApiConfiguration()
       .then(res => this.handleChangeApiConfiguration(res));
@@ -39,10 +47,10 @@ class Movies extends Component {
     const {
       searchValue,
       movies,
+      movie,
       apiConfiguration,
       page
     } = this.state;
-		if (searchValue)
     return (
       <Container>
         <SearchBar
@@ -52,34 +60,26 @@ class Movies extends Component {
           resetMovies={this.resetMovies}
           page={page}
         />
-        <MoviePreviews
-          movies={movies}
-          baseUrl={apiConfiguration.images.secure_base_url}
-          handleChangeMovies={this.handleChangeMovies}
-          page={page}
-          searchValue={searchValue}
-        />
+        {searchValue.length > 0 ?
+          <MoviePreviews
+            movies={movies}
+            baseUrl={apiConfiguration.images.secure_base_url}
+            handleChangeMovies={this.handleChangeMovies}
+            page={page}
+            searchValue={searchValue}
+            handleLoadMovie={this.handleLoadMovie}
+          /> :
+          <DiscoverPreviews
+            movies={movies}
+            baseUrl={apiConfiguration.images.secure_base_url}
+            handleChangeMovies={this.handleChangeMovies}
+            page={page}
+            handleLoadMovie={this.handleLoadMovie}
+          />
+        }
+        <MovieDetails movie={movie} handleResetMovie={this.handleResetMovie} baseUrl={apiConfiguration.images.secure_base_url}/>
       </Container>
-    );
-		else {
-			return (
-      <Container>
-        <SearchBar
-          handleChangeSerchValue={this.handleChangeSerchValue}
-          searchValue={searchValue}
-          handleChangeMovies={this.handleChangeMovies}
-          resetMovies={this.resetMovies}
-          page={page}
-        />
-        <DiscoverPreviews
-					movies={movies}
-          baseUrl={apiConfiguration.images.secure_base_url}
-          handleChangeMovies={this.handleChangeMovies}
-          page={page}
-        />
-      </Container>
-			)
-		}
+    )
   }
 }
 

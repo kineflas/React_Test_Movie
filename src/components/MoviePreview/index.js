@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native';
-
+import { reqGetMovie } from '../../requests';
 
 import { Container, Content, MovieImage, MovieTitle } from './styles';
 
@@ -9,9 +9,9 @@ class MoviePreview extends Component {
     super(props);
   }
   render() {
-    const { movie, baseUrl } = this.props;
+    const { movie, baseUrl, handleLoadMovie } = this.props;
     return (
-      <TouchableOpacity onPress={() => console.log('Movie press')}>
+      <TouchableOpacity onPress={() => reqGetMovie(movie.item.id).then(res => handleLoadMovie(res))}>
         <Container>
           <Content>
             <MovieImage source={{uri: `${baseUrl}/w92/${movie.item.poster_path}`}}/>
