@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Container } from './styles';
 import SearchBar from '../../components/SearchBar';
 import MoviePreviews from '../../containers/MoviePreviews';
+import DiscoverPreviews from '../../containers/DiscoverPreviews';
 import { reqGetApiConfiguration } from '../../requests';
 	
 class Movies extends Component {
@@ -11,14 +12,14 @@ class Movies extends Component {
     this.state = {
       searchValue: '',
       movies: [],
-      page:1,
+      page: 1,
       apiConfiguration: {
         images: {}
       }
     };
   }
   handleChangeSerchValue = newSearchValue => {
-    this.setState({ searchValue: newSearchValue});
+    this.setState({ searchValue: newSearchValue });
   }
   handleChangeApiConfiguration = newApiConfiguration => {
     this.setState({ apiConfiguration: newApiConfiguration });
@@ -33,6 +34,7 @@ class Movies extends Component {
     reqGetApiConfiguration()
       .then(res => this.handleChangeApiConfiguration(res));
   }
+
   render() {
     const {
       searchValue,
@@ -40,6 +42,7 @@ class Movies extends Component {
       apiConfiguration,
       page
     } = this.state;
+		if (searchValue)
     return (
       <Container>
         <SearchBar
@@ -58,6 +61,25 @@ class Movies extends Component {
         />
       </Container>
     );
+		else {
+			return (
+      <Container>
+        <SearchBar
+          handleChangeSerchValue={this.handleChangeSerchValue}
+          searchValue={searchValue}
+          handleChangeMovies={this.handleChangeMovies}
+          resetMovies={this.resetMovies}
+          page={page}
+        />
+        <DiscoverPreviews
+					movies={movies}
+          baseUrl={apiConfiguration.images.secure_base_url}
+          handleChangeMovies={this.handleChangeMovies}
+          page={page}
+        />
+      </Container>
+			)
+		}
   }
 }
 

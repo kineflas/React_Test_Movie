@@ -3,9 +3,18 @@ import { FlatList } from 'react-native';
 
 import { Container, Spacer } from './styles';
 import MoviePreview from '../../components/MoviePreview';
-import LoadMoreButton from '../../components/LoadMoreButton';
+import DiscoverMoreButton from '../../components/DiscoverMoreButton';
+import { reqDiscoverMovie } from '../../requests';
 	
-class MoviePreviews extends Component {
+class DiscoverPreviews extends Component {
+	componentDidMount () {
+		console.log('Debug');
+		if (this.props.movies.length === 0)
+			console.log('Debug');
+			reqDiscoverMovie(1)
+			.then(data => this.props.handleChangeMovies(data))
+			.catch(err => err);
+	}
   render() {
     const {
       movies,
@@ -21,9 +30,8 @@ class MoviePreviews extends Component {
           renderItem={movie => <MoviePreview id={movie.id} movie={movie} baseUrl={baseUrl} />}
         />
           {movies.length > 0 &&
-            <LoadMoreButton
+            <DiscoverMoreButton
               page={page}
-              searchValue={searchValue}
               handleChangeMovies={handleChangeMovies}
             />
           }
@@ -33,4 +41,4 @@ class MoviePreviews extends Component {
   }
 }
 
-export default MoviePreviews;
+export default DiscoverPreviews;
