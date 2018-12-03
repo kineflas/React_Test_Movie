@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 
-import { Container, Spacer } from './styles';
+import { Container, Spacer, StyledText } from './styles';
 import MoviePreview from '../../components/MoviePreview';
 import LoadMoreButton from '../../components/LoadMoreButton';
 	
@@ -13,13 +13,17 @@ class MoviePreviews extends Component {
       handleChangeMovies,
       page,
       searchValue,
-      handleLoadMovie
+      handleLoadMovie,
+			text
     } = this.props;
     return (
       <Container>
+					<StyledText>
+						{text}
+					</StyledText>
         <FlatList
           data={movies}
-          keyExtractor={(item, index) => index}
+          keyExtractor={(item) => item.toString()}
           renderItem={movie => <MoviePreview id={movie.id} movie={movie} baseUrl={baseUrl} handleLoadMovie={handleLoadMovie}/>}
         />
           {movies.length > 0 &&

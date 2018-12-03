@@ -12,7 +12,7 @@ const axios = Axios.create({
 export const reqSearchMovie = (searchQuery, page) =>
   axios({
     method: 'get',
-    url: `search/movie?api_key=${token}&query=${searchQuery}&page=${page}`,
+    url: `search/movie?api_key=${token}&language=fr-FR&query=${searchQuery}&page=${page}`,
   })
     .then(res => (res.data.results))
     .catch(err => {
@@ -22,7 +22,7 @@ export const reqSearchMovie = (searchQuery, page) =>
 export const reqGetMovie = movieId =>
     axios({
       method: 'get',
-      url: `movie/${movieId}?api_key=${token}`,
+      url: `movie/${movieId}?api_key=${token}&language=fr-FR`,
     })
       .then(res => res.data)
       .catch(err => {

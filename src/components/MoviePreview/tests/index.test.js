@@ -6,7 +6,6 @@ import { TouchableOpacity } from 'react-native';
 
 import MoviePreview from '../index';
 import { Container, Content } from '../styles';
-import { WIN_WIDTH } from '../../../constants/dimensions';
 
 configure({ adapter: new Adapter() });
 

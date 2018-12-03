@@ -14,11 +14,16 @@ class Movies extends Component {
       searchValue: '',
       movie: undefined,
       movies: [],
+			submitSearch: false,
       page: 1,
+			text: 'Films les plus populaires:',
       apiConfiguration: {
         images: {}
       }
     };
+  }
+  handleChangeText = newText => {
+    this.setState({ text: newText });
   }
   handleChangeSerchValue = newSearchValue => {
     this.setState({ searchValue: newSearchValue });
@@ -26,11 +31,11 @@ class Movies extends Component {
   handleChangeApiConfiguration = newApiConfiguration => {
     this.setState({ apiConfiguration: newApiConfiguration });
   }
-  handleChangeMovies = newMovies => {
+  handleChangeMovies = async (newMovies) => {
     this.setState({ movies: [...this.state.movies, ...newMovies], page: this.state.page + 1 });
   }
   resetMovies = () => {
-    this.setState({ movies: [], page: 1 });
+    this.setState({ movies: [], page: 1, text: '' });
   }
   handleLoadMovie = newMovie => {
     this.setState({ movie: newMovie })
@@ -49,18 +54,20 @@ class Movies extends Component {
       movies,
       movie,
       apiConfiguration,
-      page
+      page,
+			text
     } = this.state;
     return (
       <Container>
         <SearchBar
           handleChangeSerchValue={this.handleChangeSerchValue}
+					handleChangeText={this.handleChangeText}
           searchValue={searchValue}
           handleChangeMovies={this.handleChangeMovies}
           resetMovies={this.resetMovies}
           page={page}
         />
-        {searchValue.length > 0 ?
+        {searchValue.length > 0 && movies?
           <MoviePreviews
             movies={movies}
             baseUrl={apiConfiguration.images.secure_base_url}
@@ -68,6 +75,7 @@ class Movies extends Component {
             page={page}
             searchValue={searchValue}
             handleLoadMovie={this.handleLoadMovie}
+						text={text}
           /> :
           <DiscoverPreviews
             movies={movies}
@@ -75,6 +83,7 @@ class Movies extends Component {
             handleChangeMovies={this.handleChangeMovies}
             page={page}
             handleLoadMovie={this.handleLoadMovie}
+						text={text}
           />
         }
         <MovieDetails movie={movie} handleResetMovie={this.handleResetMovie} baseUrl={apiConfiguration.images.secure_base_url}/>
