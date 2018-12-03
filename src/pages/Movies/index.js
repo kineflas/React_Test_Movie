@@ -37,6 +37,10 @@ class Movies extends Component {
   resetMovies = () => {
     this.setState({ movies: [], page: 1, text: '' });
   }
+  /**
+	 * Stocke le retour d'une requete Movies
+   * @param  {array}} newMovie
+   */
   handleLoadMovie = newMovie => {
     this.setState({ movie: newMovie })
   }
@@ -44,6 +48,9 @@ class Movies extends Component {
     this.setState({ movie: undefined })
   }
   componentWillMount() {
+    /**
+		 * Initialise la configuration de la connexion API
+     */
     reqGetApiConfiguration()
       .then(res => this.handleChangeApiConfiguration(res));
   }

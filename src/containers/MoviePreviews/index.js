@@ -23,7 +23,7 @@ class MoviePreviews extends Component {
 					</StyledText>
         <FlatList
           data={movies}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={movie => <MoviePreview id={movie.id} movie={movie} baseUrl={baseUrl} handleLoadMovie={handleLoadMovie}/>}
         />
           {movies.length > 0 &&
